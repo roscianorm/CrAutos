@@ -9,9 +9,13 @@ export default defineConfig({
   ],
   server: {
     port: 5173,
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+      'Cross-Origin-Embedder-Policy': 'unsafe-none',
+    },
     proxy: {
-      '/api': 'http://localhost:5001',
-      '/auth': 'http://localhost:5001',
+      '/api': 'http://localhost:5266',
+      '/auth': 'http://localhost:5266',
     }
   }
 })

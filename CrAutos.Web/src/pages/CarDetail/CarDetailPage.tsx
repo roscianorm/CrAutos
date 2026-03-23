@@ -29,9 +29,8 @@ export default function CarDetailPage() {
   if (!car) return <div className="text-center py-20 text-gray-400">Car not found.</div>
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <header className="bg-white dark:bg-gray-900 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
           <button
             onClick={() => navigate('/')}
@@ -44,8 +43,7 @@ export default function CarDetailPage() {
       </header>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Photo Gallery */}
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden mb-6">
           <img
             src={car.photoUrls[selectedPhoto]}
             alt={`${car.maker} ${car.model}`}
@@ -66,40 +64,38 @@ export default function CarDetailPage() {
           </div>
         </div>
 
-        {/* Car Details */}
-        <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-6 mb-6">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
             {car.maker} {car.model} {car.year}
           </h2>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-400">Maker</span>
-              <p className="font-medium text-gray-800">{car.maker}</p>
+              <span className="text-gray-400 dark:text-gray-500">Maker</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.maker}</p>
             </div>
             <div>
-              <span className="text-gray-400">Model</span>
-              <p className="font-medium text-gray-800">{car.model}</p>
+              <span className="text-gray-400 dark:text-gray-500">Model</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.model}</p>
             </div>
             <div>
-              <span className="text-gray-400">Year</span>
-              <p className="font-medium text-gray-800">{car.year}</p>
+              <span className="text-gray-400 dark:text-gray-500">Year</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.year}</p>
             </div>
             <div>
-              <span className="text-gray-400">Province</span>
-              <p className="font-medium text-gray-800">{car.province}</p>
+              <span className="text-gray-400 dark:text-gray-500">Province</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.province}</p>
             </div>
             <div>
-              <span className="text-gray-400">Canton</span>
-              <p className="font-medium text-gray-800">{car.canton}</p>
+              <span className="text-gray-400 dark:text-gray-500">Canton</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.canton}</p>
             </div>
             <div>
-              <span className="text-gray-400">District</span>
-              <p className="font-medium text-gray-800">{car.district}</p>
+              <span className="text-gray-400 dark:text-gray-500">District</span>
+              <p className="font-medium text-gray-800 dark:text-gray-100">{car.district}</p>
             </div>
           </div>
         </div>
 
-        {/* WhatsApp Button */}
         <a
           href={car.whatsAppUrl}
           target="_blank"

@@ -3,6 +3,7 @@ using CrAutos.Api.DTOs;
 using CrAutos.Api.Models;
 using CrAutos.Api.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CrAutos.Api.Endpoints;
 
@@ -62,8 +63,18 @@ public static class CarEndpoints
         group.MapPost("/", async (
             HttpRequest request,
             AppDbContext db,
-            IPhotoStorageService photoService) =>
+            IPhotoStorageService photoService,
+    ClaimsPrincipal principal) =>
         {
+
+            // Get userId from JWT token
+            var userIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdClaim is null) return Results.Unauthorized();
+            var userId = int.Parse(userIdClaim);
+
+            // For now use a hardcoded userId — we'll wire up auth later
+            //int userId = 1;
+
             // Parse form data
             var form = await request.ReadFormAsync();
 
@@ -82,9 +93,6 @@ public static class CarEndpoints
 
             if (photos.Count < 3)
                 return Results.BadRequest("A minimum of 3 photos is required.");
-
-            // For now use a hardcoded userId — we'll wire up auth later
-            int userId = 1;
 
             var car = new Car
             {
@@ -118,7 +126,7 @@ public static class CarEndpoints
             await db.SaveChangesAsync();
 
             return Results.Created($"/api/cars/{car.Id}", car.Id);
-        });
+        }).RequireAuthorization();
 
         // DELETE /api/cars/{id} — soft delete
         group.MapDelete("/{id}", async (int id, AppDbContext db) =>

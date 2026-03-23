@@ -4,6 +4,7 @@ import type { User } from '../types';
 import { googleLogin } from '../api/auth';
 import type { CredentialResponse } from '@react-oauth/google';
 import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function getStoredUser(): User | null {
   const savedUser = localStorage.getItem('user');
@@ -14,6 +15,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(getStoredUser);
   const [isLoading, setIsLoading] = useState(false);
   const [requiresProfile, setRequiresProfile] = useState(false);
+  const navigate = useNavigate();
 
   const handleGoogleSuccess = async (response: CredentialResponse) => {
     if (!response.credential) return;
@@ -23,6 +25,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       localStorage.setItem('jwt', result.token);
       if (result.requiresProfile) {
         setRequiresProfile(true);
+        navigate('/profile');
       } else if (result.user) {
         setUser(result.user);
         localStorage.setItem('user', JSON.stringify(result.user));

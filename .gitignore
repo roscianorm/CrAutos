@@ -1,0 +1,22 @@
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+
+# Entity Framework
+**/Migrations/
+
+# User secrets
+**/secrets.json
+
+# Node
+**/node_modules/
+**/.env
+
+# Photos
+**/photos/
+
+# Build output
+**/dist/

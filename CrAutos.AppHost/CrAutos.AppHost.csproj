@@ -1,0 +1,19 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.1.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>8a284438-5f6d-41ee-8d0f-e3b6896e6ee5</UserSecretsId>
+  </PropertyGroup>
+
+<ItemGroup>
+	<PackageReference Include="Aspire.Hosting.NodeJs" Version="9.2.1" />
+</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CrAutos.Api\CrAutos.Api.csproj" />
+  </ItemGroup>
+
+</Project>
